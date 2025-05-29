@@ -37,13 +37,6 @@ class DisciplinaAdmin(admin.ModelAdmin):
 
 
 
-class AlunoTurmaInline(admin.TabularInline):
-    model = AlunoTurma
-    extra = 1
-
-class TurmaAdmin(admin.ModelAdmin):
-    inlines = [AlunoTurmaInline]
-
 
 class CidadeAdmin(admin.ModelAdmin):
     list_display = ['nome', 'uf']
@@ -59,6 +52,26 @@ class PessoaAdmin(admin.ModelAdmin):
     list_display = ['nome', 'cpf', 'email']
     search_fields = ['nome', 'cpf']
 
+class InstituicaoEnsinoInline(admin.TabularInline):
+    model = InstituicaoEnsino
+    extra = 1
+
+class CidadeAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'uf']
+    list_filter = ['uf']
+    search_fields = ['nome']
+    inlines = [InstituicaoEnsinoInline]
+
+class AlunoInline(admin.TabularInline):
+    model = Matricula
+    extra = 1
+class TurmaAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
+    search_fields = ('nome',)
+    inlines = [AlunoInline]
+
+
+
 
 admin.site.register(Ocupacao, OcupacaoAdmin)
 admin.site.register(Cidade, CidadeAdmin)
@@ -66,7 +79,6 @@ admin.site.register(Pessoa, PessoaAdmin)
 admin.site.register(InstituicaoEnsino, InstituicaoEnsinoAdmin)
 admin.site.register(AreaSaber, AreaSaberAdmin)
 admin.site.register(Curso, CursoAdmin)
-admin.site.register(Turma, TurmaAdmin)
 admin.site.register(Disciplina, DisciplinaAdmin)
 admin.site.register(AvaliacaoTipo)
 admin.site.register(Matricula)
@@ -75,4 +87,4 @@ admin.site.register(Frequencia)
 admin.site.register(Turno)
 admin.site.register(Ocorrencia)
 admin.site.register(CursoDisciplina)
-admin.site.register(AlunoTurma) 
+admin.site.register(Turma, TurmaAdmin)

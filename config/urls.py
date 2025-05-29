@@ -36,5 +36,5 @@ urlpatterns = [
     path('cidade/', CidadesView.as_view(), name='cidade'),
     path('ocorrencia/', OcorrenciasView.as_view(), name='ocorrencia'),
     path('avaliacao_tipo/', AvaliacaoTiposView.as_view(), name='avaliacao_tipo'),
-
+    path('curso_disciplina/', CursosDisciplinasView.as_view(), name='curso_disciplina'),
 ]

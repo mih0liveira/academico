@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
 from django.views import View
 from django.contrib import messages
-from .models import Curso, Disciplina, Pessoa, InstituicaoEnsino, Avaliacao, Frequencia, Ocupacao, AreaSaber,Turma, Matricula, AvaliacaoTipo,Turno, Cidade,Ocorrencia
+from .models import Curso, Disciplina, CursoDisciplina, Pessoa, InstituicaoEnsino, Avaliacao, Frequencia, Ocupacao, AreaSaber,Turma, Matricula, AvaliacaoTipo,Turno, Cidade,Ocorrencia
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'index.html')
@@ -65,7 +65,7 @@ class AreasSaberView(View):
 
 class PessoasView(View):
     def get(self, request, *args, **kwargs):
-        pessoa = Pessoa.objects.all() 
+        pessoas = Pessoa.objects.all() 
         return render(request, 'pessoa.html', {'pessoas': pessoas})
 
 class InstituicoesView(View):
@@ -82,4 +82,10 @@ class FrequenciasView(View):
     def get(self, request, *args, **kwargs):
         frequencias = Frequencia.objects.all()
         return render(request, 'frequencia.html', {'frequencias': frequencias})
+
+class CursosDisciplinasView(View):
+    def get(self, request, *args, **kwargs):
+        curso_disciplinas = CursoDisciplina.objects.all()
+        return render(request, 'curso_disciplina.html', {'curso_disciplinas': curso_disciplinas})
+
 

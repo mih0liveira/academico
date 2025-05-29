@@ -112,7 +112,7 @@ class Matricula(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     data_inicio = models.DateField()
     data_previsao_termino = models.DateField()
-
+    turma =  models.ForeignKey(Turma, on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return f"{self.pessoa} - {self.curso}"
 
@@ -183,16 +183,6 @@ class CursoDisciplina(models.Model):
         verbose_name = "Curso e Disciplina"
         verbose_name_plural = "Cursos e Disciplinas"
 
-class AlunoTurma(models.Model):
-    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
-    aluno = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.aluno} - {self.turma}"
-
-    class Meta:
-        verbose_name = "Aluno por Turma"
-        verbose_name_plural = "Alunos por Turma"
 
         
 
